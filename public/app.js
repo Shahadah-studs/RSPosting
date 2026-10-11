@@ -115,24 +115,6 @@ function renderPostsList(posts, container) {
     }
     posts.forEach(post => {
         const pfpColor = getColorForLetter(post.pfpLetter);
-        
-        // Assemble comment elements
-        let commentsHtml = '';
-        if (post.comments && post.comments.length > 0) {
-            post.comments.forEach(comment => {
-                const cPfpColor = getColorForLetter(comment.pfpLetter);
-                commentsHtml += `
-                    <div class="mc-comment" style="margin-left: 20px; margin-top: 10px; padding: 10px; border-left: 4px solid #1e1e1e; background: #3d3d3d; box-shadow: inset 2px 2px #555;">
-                        <div class="post-header" style="font-size: 12px; margin-bottom: 5px;">
-                            <div class="avatar" style="width:20px; height:20px; font-size:10px; background-color: ${cPfpColor};">${comment.pfpLetter}</div>
-                            <span style="color: #55ffff;">${comment.username}</span>
-                        </div>
-                        <p style="margin: 0; font-size: 14px; text-shadow: 1px 1px #000;">${comment.content}</p>
-                    </div>
-                `;
-            });
-        }
-
         const el = document.createElement('div');
         el.className = 'mc-panel mc-post';
         el.innerHTML = `
@@ -145,18 +127,7 @@ function renderPostsList(posts, container) {
                 <button class="mc-btn" onclick="react(${post.id}, 'fire')">🔥 Fire (${post.fire || 0})</button>
                 <button class="mc-btn" onclick="react(${post.id}, 'heart')">❤️ Heart (${post.heart || 0})</button>
             </div>
-            
-            <!-- RedStonePosting Comments Segment -->
-            <div class="comments-section" style="margin-top: 20px; border-top: 4px solid #1e1e1e; padding-top: 15px;">
-                <div class="comments-list">${commentsHtml}</div>
-                
-                <div style="margin-top: 15px; display: flex; gap: 10px;">
-                    <input type="text" id="commInput-${post.id}" placeholder="Reply to this block..." class="mc-input" style="font-size: 12px; padding: 6px;">
-                    <button class="mc-btn" onclick="submitComment(${post.id})" style="font-size: 12px; padding: 4px 12px;">REPLY</button>
-                </div>
-            </div>
         `;
-        
         el.querySelector('.username-link').addEventListener('click', (e) => {
             viewProfile(e.target.getAttribute('data-username'));
         });
@@ -212,30 +183,6 @@ document.getElementById('goHome').addEventListener('click', () => {
     }
 });
 
-async function submitComment(postId) {
-    const input = document.getElementById(`commInput-${postId}`);
-    const content = input.value.trim();
-    if (!content || !currentUser) return alert("You must write a message and be logged in!");
-
-    try {
-        const response = await fetch('/api/comment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                postId: postId,
-                username: currentUser.username,
-                pfpLetter: currentUser.pfpLetter,
-                content: content
-            })
-        });
-        if (response.ok) {
-            input.value = '';
-            loadFeed(); 
-        }
-    } catch (err) { console.error(err); }
-}
-
 window.react = react;
-window.submitComment = submitComment;
 init();
 

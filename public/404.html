@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 // Chunk Loading Error</title>
+    <link href="https://cdnfonts.com" rel="stylesheet">
+    <style>
+        :root {
+            --mc-bg: #141414;
+            --mc-panel-bg: #2c2c2c;
+            --mc-border-dark: #121212;
+            --mc-border-light: #555555;
+            --mc-text: #ffffff;
+            --mc-btn-bg: #8b8b8b;
+        }
+        body {
+            background-color: var(--mc-bg);
+            color: var(--mc-text);
+            font-family: 'Minecraft', 'Courier New', monospace;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            image-rendering: pixelated;
+        }
+        .error-container {
+            max-width: 500px;
+            background-color: var(--mc-panel-bg);
+            border: 4px solid var(--mc-border-dark);
+            box-shadow: inset 4px 4px var(--mc-border-light), inset -4px -4px #1a1a1a;
+            padding: 40px 20px;
+        }
+        h1 { color: #ff5555; font-size: 32px; margin-top: 0; text-shadow: 2px 2px #000; }
+        p { color: #aaa; font-size: 16px; margin-bottom: 30px; line-height: 1.5; }
+        .mc-btn {
+            background-color: var(--mc-btn-bg);
+            border: 4px solid var(--mc-border-dark);
+            box-shadow: inset -4px -4px #555555, inset 4px 4px #dbdbdb;
+            color: #e0e0e0;
+            font-family: inherit;
+            font-size: 16px;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-shadow: 2px 2px #000;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .mc-btn:hover { background-color: #a0a0a0; color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>404: Chunk Not Found</h1>
+        <p>The redstone signal was cut or this text block was mined by Herobrine.</p>
+        <a href="/" class="mc-btn">Back to Spawn</a>
+    </div>
+</body>
+</html>

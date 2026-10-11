@@ -1,6 +1,6 @@
 #  RSPosting (RedStonePosting / RSP)
 
-> 🌐 Website : <a href="https://redstoneposting.vercel.app/">redstoneposting.vercel.app</a>
+> **🌐 Website**: <a href="https://redstoneposting.vercel.app/">redstoneposting.vercel.app</a>
 
 Welcome to the open-source headquarters of **RedStonePosting**, a retro, video-game-styled social hub for sharing your thoughts. 
 

@@ -4,12 +4,10 @@ module.exports = async (req, res) => {
     try {
         if (req.method === "GET") {
             const { username } = req.query;
-            
-            // Grabs posts and instantly maps comments sorted by creation timeline
-            let url = `${SUPABASE_URL}/rest/v1/posts?select=*,comments(* order by id.asc)&order=id.desc`;
+            let url = `${SUPABASE_URL}/rest/v1/posts?order=id.desc`;
             
             if (username) {
-                url = `${SUPABASE_URL}/rest/v1/posts?select=*,comments(* order by id.asc)&username=eq.${encodeURIComponent(username)}&order=id.desc`;
+                url = `${SUPABASE_URL}/rest/v1/posts?username=eq.${encodeURIComponent(username)}&order=id.desc`;
             }
 
             const dbRes = await fetch(url, { headers: { "apikey": SUPABASE_KEY, "Authorization": `Bearer ${SUPABASE_KEY}` } });
@@ -21,13 +19,7 @@ module.exports = async (req, res) => {
                 pfpLetter: p.pfp_letter, 
                 content: p.content, 
                 fire: p.fire, 
-                heart: p.heart,
-                comments: p.comments ? p.comments.map(c => ({
-                    id: c.id,
-                    username: c.username,
-                    pfpLetter: c.pfp_letter,
-                    content: c.content
-                })) : []
+                heart: p.heart 
             }));
             
             res.setHeader("Cache-Control", "no-cache");

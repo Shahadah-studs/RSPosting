@@ -101,7 +101,18 @@
                 }
             });
         });
-        
+                        // 🥇 EARLY USER BADGE: Automatically gives iamyoubutbetter a medal with hover text
+                if (nameText === 'iamyoubutbetter' && !link.querySelector('.early-badge')) {
+                    const badgeSpan = document.createElement('span');
+                    badgeSpan.className = 'early-badge';
+                    badgeSpan.innerText = ' 🥇';
+                    badgeSpan.title = 'EARLY USER';
+                    badgeSpan.style.marginLeft = '4px';
+                    badgeSpan.style.cursor = 'help';
+                    badgeSpan.style.display = 'inline-block';
+                    link.appendChild(badgeSpan);
+                }
+
         teamBadgeObserver.observe(document.body, { childList: true, subtree: true });
     </script>
     <script src="app.js"></script>

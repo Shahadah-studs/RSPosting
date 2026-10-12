@@ -73,5 +73,14 @@
 </a>
 
     <script src="app.js"></script>
+<script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('RSP Application Circuit Armed!'))
+                    .catch(err => console.log('PWA Load Error:', err));
+            });
+        }
+    </script>
 </body>
 </html>

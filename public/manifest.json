@@ -1,0 +1,21 @@
+{
+  "short_name": "RSP",
+  "name": "RedStonePosting",
+  "icons": [
+    {
+      "src": "/favicon1.png?v=6",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.png?v=6",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#2c2c2c",
+  "theme_color": "#ff5555",
+  "display": "standalone",
+  "orientation": "portrait"
+}

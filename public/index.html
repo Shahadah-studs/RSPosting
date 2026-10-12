@@ -71,24 +71,25 @@
 <a href="https://visitorbadge.io/status?path=https%3A%2F%2Fredstoneposting.vercel.app%2F" target="_blank" style="position: fixed; bottom: 15px; right: 15px; display: inline-block; z-index: 9999; border: 2px solid #1e1e1e; box-shadow: 2px 2px #000; line-height: 0;">
     <img src="https://api.visitorbadge.io/api/daily?path=https%3A%2F%2Fredstoneposting.vercel.app%2F&label=Visitors%20&labelColor=%2337d67a&countColor=%23dce775&style=plastic" alt="Visitors" style="display: block; height: 26px;">
 </a>
-<script>
+    <!-- Automatic Team Badge Renderer Engine -->
+    <script>
         const teamBadgeObserver = new MutationObserver(() => {
             document.querySelectorAll('.username-link').forEach(link => {
                 const nameText = link.innerText.trim().toLowerCase();
                 
-                // 1. 👑 MY CROWN: Automatically gives Shahadah_Studios a Crown with "OWNER" hover text
+                // 1. 👑  CROWN
                 if ((nameText === 'shahadah_studios' || nameText === 'shahadah_studios_elite') && !link.querySelector('.owner-crown')) {
                     const crownSpan = document.createElement('span');
                     crownSpan.className = 'owner-crown';
                     crownSpan.innerText = ' 👑';
-                    crownSpan.title = 'OWNER & DEVELOPER';
+                    crownSpan.title = 'OWNER';
                     crownSpan.style.marginLeft = '4px';
                     crownSpan.style.cursor = 'help';
                     crownSpan.style.display = 'inline-block';
                     link.appendChild(crownSpan);
                 }
                 
-                // 2. 🔧 MY BROTHER'S WRENCH: Corrected to match "superb1oxd_303" cleanly!
+                // 2. 🔧  BROTHER'S WRENCH
                 if (nameText === 'superb1oxd_303' && !link.querySelector('.dev-wrench')) {
                     const wrenchSpan = document.createElement('span');
                     wrenchSpan.className = 'dev-wrench';
@@ -99,9 +100,8 @@
                     wrenchSpan.style.display = 'inline-block';
                     link.appendChild(wrenchSpan);
                 }
-            });
-        });
-                        // 🥇 EARLY USER BADGE: Automatically gives iamyoubutbetter a medal with hover text
+
+               
                 if (nameText === 'iamyoubutbetter' && !link.querySelector('.early-badge')) {
                     const badgeSpan = document.createElement('span');
                     badgeSpan.className = 'early-badge';
@@ -112,9 +112,14 @@
                     badgeSpan.style.display = 'inline-block';
                     link.appendChild(badgeSpan);
                 }
+                // ==================================================
 
+            });
+        });
+        
         teamBadgeObserver.observe(document.body, { childList: true, subtree: true });
     </script>
+
     <script src="app.js"></script>
 <script>
         if ('serviceWorker' in navigator) {

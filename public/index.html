@@ -71,7 +71,25 @@
 <a href="https://visitorbadge.io/status?path=https%3A%2F%2Fredstoneposting.vercel.app%2F" target="_blank" style="position: fixed; bottom: 15px; right: 15px; display: inline-block; z-index: 9999; border: 2px solid #1e1e1e; box-shadow: 2px 2px #000; line-height: 0;">
     <img src="https://api.visitorbadge.io/api/daily?path=https%3A%2F%2Fredstoneposting.vercel.app%2F&label=Visitors%20&labelColor=%2337d67a&countColor=%23dce775&style=plastic" alt="Visitors" style="display: block; height: 26px;">
 </a>
-
+<script>
+        const crownObserver = new MutationObserver(() => {
+            document.querySelectorAll('.username-link').forEach(link => {
+                const nameText = link.innerText.trim().toLowerCase();
+                
+                // Checks if the post belongs to you, and appends the crown to the right if it is not already there
+                if ((nameText === 'shahadah_studios' || nameText === 'shahadah_studios_elite') && !link.querySelector('.owner-crown')) {
+                    const crownSpan = document.createElement('span');
+                    crownSpan.className = 'owner-crown';
+                    crownSpan.innerText = ' 👑';
+                    crownSpan.style.marginLeft = '4px';
+                    crownSpan.style.display = 'inline-block';
+                    link.appendChild(crownSpan);
+                }
+            });
+        });
+        
+        crownObserver.observe(document.body, { childList: true, subtree: true });
+    </script>
     <script src="app.js"></script>
 <script>
         if ('serviceWorker' in navigator) {

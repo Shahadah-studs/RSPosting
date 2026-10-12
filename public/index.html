@@ -72,23 +72,37 @@
     <img src="https://api.visitorbadge.io/api/daily?path=https%3A%2F%2Fredstoneposting.vercel.app%2F&label=Visitors%20&labelColor=%2337d67a&countColor=%23dce775&style=plastic" alt="Visitors" style="display: block; height: 26px;">
 </a>
 <script>
-        const crownObserver = new MutationObserver(() => {
+        const teamBadgeObserver = new MutationObserver(() => {
             document.querySelectorAll('.username-link').forEach(link => {
                 const nameText = link.innerText.trim().toLowerCase();
                 
-                // Checks if the post belongs to you, and appends the crown to the right if it is not already there
+                // 1. 👑 YOUR CROWN: Automatically gives Shahadah_Studios a Crown with "OWNER" hover text
                 if ((nameText === 'shahadah_studios' || nameText === 'shahadah_studios_elite') && !link.querySelector('.owner-crown')) {
                     const crownSpan = document.createElement('span');
                     crownSpan.className = 'owner-crown';
                     crownSpan.innerText = ' 👑';
+                    crownSpan.title = 'OWNER';
                     crownSpan.style.marginLeft = '4px';
+                    crownSpan.style.cursor = 'help';
                     crownSpan.style.display = 'inline-block';
                     link.appendChild(crownSpan);
+                }
+                
+                // 2. 🔧 YOUR BROTHER'S WRENCH: Corrected to match "superb1oxd_303" cleanly!
+                if (nameText === 'superb1oxd_303' && !link.querySelector('.dev-wrench')) {
+                    const wrenchSpan = document.createElement('span');
+                    wrenchSpan.className = 'dev-wrench';
+                    wrenchSpan.innerText = ' 🔧';
+                    wrenchSpan.title = 'DEVELOPER';
+                    wrenchSpan.style.marginLeft = '4px';
+                    wrenchSpan.style.cursor = 'help';
+                    wrenchSpan.style.display = 'inline-block';
+                    link.appendChild(wrenchSpan);
                 }
             });
         });
         
-        crownObserver.observe(document.body, { childList: true, subtree: true });
+        teamBadgeObserver.observe(document.body, { childList: true, subtree: true });
     </script>
     <script src="app.js"></script>
 <script>

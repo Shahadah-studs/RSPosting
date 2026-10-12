@@ -21,7 +21,7 @@ It is a super lightweight social network feed that looks like a pixelated, 8-bit
 *   **Total Anonymity:** Users pick a custom nickname and get a colorful avatar box with the first letter of their name inside. No private emails are ever collected, so hackers can't leak your private data and blame the developer Shahadah Studios Elite (ME).
 *   **The Reaction Counter:** You can slap 🔥 Fire and ❤️ Heart buttons onto people's posts and watch the number scores count up instantly.
 *   **Custom Error Screen:** It has a customized 404 page that lets people know the link they were looking for does not exist anymore.
-
+* **PWA** This also is a PWA what you can download! LAG free and fast response!
 ---
 
 Created by Shahadah Studios Elite. Happy coding! 🕹️

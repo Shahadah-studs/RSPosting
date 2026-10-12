@@ -76,19 +76,19 @@
             document.querySelectorAll('.username-link').forEach(link => {
                 const nameText = link.innerText.trim().toLowerCase();
                 
-                // 1. 👑 YOUR CROWN: Automatically gives Shahadah_Studios a Crown with "OWNER" hover text
+                // 1. 👑 MY CROWN: Automatically gives Shahadah_Studios a Crown with "OWNER" hover text
                 if ((nameText === 'shahadah_studios' || nameText === 'shahadah_studios_elite') && !link.querySelector('.owner-crown')) {
                     const crownSpan = document.createElement('span');
                     crownSpan.className = 'owner-crown';
                     crownSpan.innerText = ' 👑';
-                    crownSpan.title = 'OWNER';
+                    crownSpan.title = 'OWNER & DEVELOPER';
                     crownSpan.style.marginLeft = '4px';
                     crownSpan.style.cursor = 'help';
                     crownSpan.style.display = 'inline-block';
                     link.appendChild(crownSpan);
                 }
                 
-                // 2. 🔧 YOUR BROTHER'S WRENCH: Corrected to match "superb1oxd_303" cleanly!
+                // 2. 🔧 MY BROTHER'S WRENCH: Corrected to match "superb1oxd_303" cleanly!
                 if (nameText === 'superb1oxd_303' && !link.querySelector('.dev-wrench')) {
                     const wrenchSpan = document.createElement('span');
                     wrenchSpan.className = 'dev-wrench';

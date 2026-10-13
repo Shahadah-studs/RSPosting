@@ -151,6 +151,17 @@
                     badgeSpan.style.cursor = 'help';
                     badgeSpan.style.display = 'inline-block';
                     link.appendChild(badgeSpan);
+                } 
+                 // ZakirKing123 
+                if (nameText === 'zakirking123' && !link.querySelector('.early-badge')) {
+                    const badgeSpan = document.createElement('span');
+                    badgeSpan.className = 'early-badge';
+                    badgeSpan.innerText = ' ✅';
+                    badgeSpan.title = 'VERIFIED';
+                    badgeSpan.style.marginLeft = '4px';
+                    badgeSpan.style.cursor = 'help';
+                    badgeSpan.style.display = 'inline-block';
+                    link.appendChild(badgeSpan);
                 }
             });
         });

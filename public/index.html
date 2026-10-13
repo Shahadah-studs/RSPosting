@@ -79,7 +79,7 @@
             let clean = text;
             badWords.forEach(word => {
                 const regex = new RegExp("\\b" + word + "\\b|\\b" + word + "s\\b", "gi");
-                clean = clean.replace(regex, "####");
+                clean = clean.replace(regex, "[CENSORED]");
             });
             return clean;
         }

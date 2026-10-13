@@ -119,7 +119,17 @@
                     wrenchSpan.style.display = 'inline-block';
                     link.appendChild(wrenchSpan);
                 }
-
+// CoolSuff Aprrv creator
+                if (nameText === 'coolsuff' && !link.querySelector('.creator-badge')) {
+                    const badgeSpan = document.createElement('span');
+                    badgeSpan.className = 'creator-badge';
+                    badgeSpan.innerText = ' 🌟';
+                    badgeSpan.title = 'APPROVED CREATOR';
+                    badgeSpan.style.marginLeft = '4px';
+                    badgeSpan.style.cursor = 'help';
+                    badgeSpan.style.display = 'inline-block';
+                    link.appendChild(badgeSpan);
+                }
                 // iamyoubutbetter Early User Medal
                 if (nameText === 'iamyoubutbetter' && !link.querySelector('.early-badge')) {
                     const badgeSpan = document.createElement('span');

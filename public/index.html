@@ -73,7 +73,39 @@
 <a href="https://visitorbadge.io/status?path=https%3A%2F%2Fredstoneposting.vercel.app%2F" target="_blank" style="position: fixed; bottom: 15px; right: 15px; display: inline-block; z-index: 9999; border: 2px solid #1e1e1e; box-shadow: 2px 2px #000; line-height: 0;">
     <img src="https://api.visitorbadge.io/api/daily?path=https%3A%2F%2Fredstoneposting.vercel.app%2F&label=Visitors%20&labelColor=%2337d67a&countColor=%23dce775&style=plastic" alt="Visitors" style="display: block; height: 26px;">
 </a>
-     <!-- Automatic Team Badge and Swear Filter Engine -->
+    <!-- Independent RSP Universal Link-to-Image Converter -->
+<script>
+    function renderUniversalMediaPost(rawText) {
+        let textContent = rawText || "";
+        let mediaHtml = "";
+
+        // Broad Regex pattern to capture absolutely any website link
+        const generalUrlRegex = /(https?:\/\/[^\s]+)/i;
+
+        if (generalUrlRegex.test(textContent)) {
+            // Grab whatever link the user pasted
+            const detectedUrl = textContent.match(generalUrlRegex)[0];
+            
+            // Wipe the raw text URL out so it looks super clean
+            textContent = textContent.replace(detectedUrl, "").trim();
+            
+            // Treat the link as a pure visual asset inside your 3D bevel box
+            mediaHtml = `
+                <div style="margin-top: 10px; background-color: #1a1a1a; padding: 8px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555;">
+                    <img src="${detectedUrl}" style="max-width: 100%; height: auto; display: block; margin: 0 auto; max-height: 350px; object-fit: contain;" onerror="this.onerror=null; this.src='https://placehold.co';">
+                </div>
+            `;
+        }
+
+        // Returns the cleaned thought text and your automatic image framework
+        return {
+            text: textContent,
+            html: mediaHtml
+        };
+    }
+</script>
+
+    <!-- Automatic Team Badge and Swear Filter Engine -->
     <script>
         const badWords = ["fuck", "shit", "ass"];
 

@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSP | The Story So Far...</title>
-    
+    <title>RSP | The Legend Begins...</title>
     <style>
-        /* CONFIGURATION DU SYSTEME GLOBAL */
         body {
-            background-color: #121212;
+            background-color: #0d0d0d;
             color: #ffffff;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
@@ -20,41 +18,46 @@
             overflow: hidden;
         }
 
-        /* FILTRE RETRO EN ARRIÈRE-PLAN (Style Terminal / Tubes) */
         .scanlines {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 18, 18, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            background-size: 100% 4px, 3px 100%;
+            background: linear-gradient(rgba(18, 18, 18, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+            background-size: 100% 4px;
             z-index: 10;
             pointer-events: none;
         }
 
-        /* VAGUE DE TEXTES ANIMEES */
+        .cinematic-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(67,20,7,0.3) 0%, rgba(13,13,13,1) 70%);
+            z-index: 1;
+        }
+
         .text-line {
             position: absolute;
             width: 90%;
-            max-width: 650px;
+            max-width: 700px;
             text-align: center;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             letter-spacing: 1px;
             opacity: 0;
-            transform: scale(0.95);
+            transform: scale(0.9);
             line-height: 1.6;
+            z-index: 5;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
         }
 
-        /* LOGIC DE SCENARISATION (Chaque ligne attend son tour et disparaît) */
-        .line-1 { animation: cinematicSequence 4s ease-in-out 0.5s forwards; color: #aaaaaa; }
-        .line-2 { animation: cinematicSequence 4s ease-in-out 4.5s forwards; color: #ef4444; }
-        .line-3 { animation: cinematicSequence 4s ease-in-out 8.5s forwards; color: #ff9900; }
-        .line-4 { animation: cinematicSequence 4s ease-in-out 12.5s forwards; color: #34d399; }
-        
-        /* SEQUENCE FINALE : APPARITION DE LA BOITE DE L'APP */
+        .line-1 { animation: cinematicSequence 4.5s ease-in-out 0.5s forwards; color: #d1d5db; }
+        .line-2 { animation: cinematicSequence 4.5s ease-in-out 5.2s forwards; color: #ef4444; }
+        .line-3 { animation: cinematicSequence 4.5s ease-in-out 9.9s forwards; color: #ff9900; }
+        .line-4 { animation: cinematicSequence 4.5s ease-in-out 14.6s forwards; color: #34d399; }
+
         .final-logo-box {
             opacity: 0;
-            transform: translateY(20px);
-            animation: finalReveal 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 17s forwards;
+            transform: translateY(40px) scale(0.95);
+            animation: finalReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 19.5s forwards;
             background-color: #3a3a3a;
             padding: 30px;
             text-align: center;
@@ -62,36 +65,39 @@
             border-left: 4px solid #555555;
             border-right: 4px solid #111111;
             border-bottom: 4px solid #111111;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
-            max-width: 500px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            max-width: 550px;
             width: 90%;
-            z-index: 5;
+            z-index: 6;
         }
 
-        /* KEYFRAMES : TIMING DU TEXTE (Apparition -> Reste -> Disparition) */
         @keyframes cinematicSequence {
             0% {
                 opacity: 0;
-                transform: scale(0.95);
-                filter: blur(5px);
+                transform: scale(0.9) translateY(10px);
+                filter: blur(12px);
             }
-            15%, 85% {
+            12% {
                 opacity: 1;
-                transform: scale(1);
+                transform: scale(1) translateY(0);
+                filter: blur(0px);
+            }
+            88% {
+                opacity: 1;
+                transform: scale(1.02) translateY(0);
                 filter: blur(0px);
             }
             100% {
                 opacity: 0;
-                transform: scale(1.03);
-                filter: blur(8px);
+                transform: scale(1.05) translateY(-10px);
+                filter: blur(12px);
             }
         }
 
-        /* KEYFRAMES : LE FINAL BOOT */
         @keyframes finalReveal {
             0% {
                 opacity: 0;
-                transform: translateY(30px) scale(0.95);
+                transform: translateY(40px) scale(0.95);
             }
             100% {
                 opacity: 1;
@@ -103,43 +109,52 @@
 <body>
 
     <div class="scanlines"></div>
+    <div class="cinematic-bg"></div>
 
-    
     <div class="text-line line-1">
-        "In October 2026... <br>A blank HTML text file was opened on a lightweight Chromebook C13 Yoga."
+        "In a world where heavy frameworks bloat the internet... <br>
+        A legendary Chromebook C13 Yoga opened a single blank text file."
     </div>
 
     <div class="text-line line-2">
-        "No heavy Code frameworks. No broken templates. <br>Pure hand-made code and raw engineering passion."
+        "October 12: A wild wave of spammers broke into the site thinking it was a rapid live chat... <br>
+        <span style="font-size: 16px; color: #fca5a5;">(My network data cried)</span>"
     </div>
 
     <div class="text-line line-3">
-        "The community thinks it's a chat... <br>But the Developer built a secure, optimized Forum Hub."
+        "But the Developer laid down the law. <br>
+        A secure client-side Regex shield instantly blasted bad words into [CENSORED]."
     </div>
 
     <div class="text-line line-4">
-        "With 0.02 GB of Memory used and a bulletproof custom Auth... <br>The network expanded from Canada to Sri Lanka."
+        "Running smoothly at a microscopic 0.02 GB of resource layout... <br>
+        From Canada to Portugal and Sri Lanka, the legend became unstoppable."
     </div>
 
-   
     <div class="final-logo-box">
-        <h1 style="margin: 0; color: #ef4444; font-size: 32px; letter-spacing: 2px; font-family: sans-serif;"> REDSTONEPOSTING</h1>
-        <p style="margin: 10px 0 20px 0; color: #ff9900; font-size: 14px; font-weight: bold; text-transform: uppercase;">The Legendary Forum Hub is Live</p>
+        <h1 style="margin: 0; color: #ef4444; font-size: 32px; letter-spacing: 2px; font-family: sans-serif;">🧱 REDSTONEPOSTING</h1>
+        <p style="margin: 5px 0 20px 0; color: #ff9900; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">The Ultimate Hand-Coded Forum Hub</p>
         
-        <div style="background-color: #1a1a1a; padding: 12px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; font-size: 13px; color: #cccccc; margin-bottom: 20px; text-align: left; line-height: 1.5;">
-            • 100% Secure Custom Auth Architecture<br>
-            • Installed via Desktop & Mobile PWA<br>
-            • Protected by a Client-Side Regex Swear Filter<br>
-            • Ranks: Approved Creator, Verified, Scout, Owner
+        <div style="background-color: #1a1a1a; padding: 15px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; font-size: 13px; color: #cccccc; margin-bottom: 25px; text-align: left; line-height: 1.6; font-family: sans-serif;">
+            <b style="color: #ff9900; display: block; margin-bottom: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">🚀 Core Platform Systems:</b>
+            • <b>Custom Secure Auth:</b> Perfectly synced with Google Password Manager so your forgotten credentials stay safe.<br>
+            • <b>Progressive Web App:</b> Pins a real installable shortcut straight to your home screen or desktop taskbar with a working logo.<br>
+            • <b>Smart Link Tagging:</b> Drops bare text URLs instantly into beautiful beveled multimedia frames.<br>
+            <br>
+            <b style="color: #ff9900; display: block; margin-bottom: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">🎖️ Official Network Ranks:</b>
+            • <span style="color: #ef4444; font-weight: bold;">👑 Owner & Developer Crown:</span> The biggest crown reserved exclusively for Shahadah_Studios.<br>
+            • <span style="color: #3b82f6; font-weight: bold;">🔧 Developer / Mod:</span> Staff ranks for co-developers keeping the network clean.<br>
+            • <span style="color: #10b981; font-weight: bold;">🎖️ Scout:</span> Permanent honor for players who recruit 5 active friends to the hub.<br>
+            • <span style="color: #a855f7; font-weight: bold;">✨ Verified & Approved Creator:</span> Legendary badges for content channels and trusted creators.
         </div>
 
-        
         <a href="index.html" style="text-decoration: none;">
-            <button style="width: 100%; background-color: #ef4444; color: white; font-family: sans-serif; font-size: 14px; font-weight: bold; padding: 10px; cursor: pointer; border-top: 2px solid #fca5a5; border-left: 2px solid #fca5a5; border-right: 2px solid #7f1d1d; border-bottom: 2px solid #7f1d1d; box-shadow: 0 4px 5px rgba(0,0,0,0.4);">
-                ENTER THE FEED 🚀
+            <button style="width: 100%; background-color: #ef4444; color: white; font-family: sans-serif; font-size: 14px; font-weight: bold; padding: 12px; cursor: pointer; border-top: 2px solid #fca5a5; border-left: 2px solid #fca5a5; border-right: 2px solid #7f1d1d; border-bottom: 2px solid #7f1d1d; box-shadow: 0 4px 6px rgba(0,0,0,0.4); text-transform: uppercase; letter-spacing: 0.5px;">
+                Launch Main Feed 🚀
             </button>
         </a>
     </div>
 
 </body>
 </html>
+

@@ -44,64 +44,8 @@
 
                 <button id="submitPostBtn" class="mc-btn">POST BLOCK</button>
             </section>
-            <section id="feedContainer" class="feed-container"><div style="text-align: center; margin: 25px 0;">
-    <button id="rsp-load-more-btn" onclick="fetchNextBatch()" style="padding: 12px 24px; background-color: #ef4444; color: white; border: none; border-radius: 6px; font-weight: bold; font-size: 14px; cursor: pointer; display: none; box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-        Load More Posts
-    </button>
-</div>
-
-<script>
-    let currentPointer = 0;
-    const batchSize = 10;
-
-    async function fetchNextBatch() {
-        const loadMoreBtn = document.getElementById('rsp-load-more-btn');
-        
-        const { data: posts, error } = await supabase
-            .from('posts')
-            .select('*')
-            .order('created_at', { ascending: false })
-            .range(currentPointer, currentPointer + batchSize - 1);
-
-        if (error) {
-            console.error('Supabase Pagination Error:', error);
-            return;
-        }
-
-        const feedContainer = document.getElementById('feedContainer');
-        
-        posts.forEach(post => {
-            const postCard = document.createElement('div');
-            postCard.setAttribute('style', 'background: #222; color: #fff; padding: 15px; margin-bottom: 12px; border-radius: 8px; border-left: 5px solid #ef4444; box-shadow: 0 2px 5px rgba(0,0,0,0.2);');
-            
-            const cleanText = applySwearFilter(post.content);
-            
-            postCard.innerHTML = `
-                <div class="post-body" style="font-weight: bold; color: #ff9900; margin-bottom: 6px;">
-                    @${post.username}
-                </div>
-                <p style="margin: 0; line-height: 1.4; color: #f3f4f6;">${cleanText}</p>
-            `;
-            feedContainer.appendChild(postCard);
-        });
-
-        currentPointer += batchSize;
-
-        if (posts.length < batchSize) {
-            loadMoreBtn.style.display = 'none';
-        } else {
-            loadMoreBtn.style.display = 'inline-block';
-        }
-
-        if (typeof scanPostBodies === 'function') {
-            scanPostBodies();
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        fetchNextBatch();
-    });
-</script>
+            <section id="feedContainer" class="feed-container">
+    
 </section>
         </div>
 

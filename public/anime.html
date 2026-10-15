@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSP | Please Try To Read This...</title>
+    <title>REDSTONEPOSTING | Turn It Up...</title>
     <style>
         body {
-            background-color: #0d0d0d;
+            background-color: #050505;
             color: #ffffff;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
@@ -16,12 +16,13 @@
             justify-content: center;
             align-items: center;
             overflow: hidden;
+            position: relative;
         }
 
         .scanlines {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 18, 18, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
+            background: linear-gradient(rgba(18, 18, 18, 0) 50%, rgba(0, 0, 0, 0.5) 50%);
             background-size: 100% 4px;
             z-index: 10;
             pointer-events: none;
@@ -30,28 +31,56 @@
         .cinematic-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(67,20,7,0.3) 0%, rgba(13,13,13,1) 70%);
+            background: radial-gradient(circle, rgba(127,29,29,0.2) 0%, rgba(5,5,5,1) 80%);
             z-index: 1;
         }
+
+        /* GROX STYLE BACKGROUND GRID ANIMATION */
+        .grox-grid {
+            position: fixed;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background-image: 
+                linear-gradient(rgba(239, 68, 68, 0.15) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(239, 68, 68, 0.15) 2px, transparent 2px);
+            background-size: 50px 50px;
+            z-index: 2;
+            transform: perspective(500px) rotateX(60deg);
+            animation: groxGridScroll 12s linear infinite;
+        }
+
+        /* DESTRUCTIVE REDSTONE FLOATING PARTICLES */
+        .redstone-particle {
+            position: absolute;
+            background-color: #ef4444;
+            box-shadow: 0 0 12px #ef4444, 0 0 20px #ef4444;
+            z-index: 3;
+            bottom: -20px;
+            opacity: 0;
+        }
+
+        .p1 { width: 6px; height: 6px; left: 15%; animation: particleFloat 7s linear infinite 1s; }
+        .p2 { width: 4px; height: 4px; left: 45%; animation: particleFloat 9s linear infinite 3s; }
+        .p3 { width: 8px; height: 8px; left: 75%; animation: particleFloat 6s linear infinite 0.5s; }
+        .p4 { width: 5px; height: 5px; left: 90%; animation: particleFloat 8s linear infinite 4s; }
 
         .text-line {
             position: absolute;
             width: 90%;
             max-width: 700px;
             text-align: center;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: bold;
             letter-spacing: 1px;
             opacity: 0;
             transform: scale(0.9);
             line-height: 1.6;
             z-index: 5;
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+            text-shadow: 0 0 15px rgba(239,68,68,0.6);
         }
 
-        .line-1 { animation: cinematicSequence 4.5s ease-in-out 0.5s forwards; color: #d1d5db; }
+        .line-1 { animation: cinematicSequence 4.5s ease-in-out 0.5s forwards; color: #ff9900; font-size: 28px; }
         .line-2 { animation: cinematicSequence 4.5s ease-in-out 5.2s forwards; color: #ef4444; }
-        .line-3 { animation: cinematicSequence 4.5s ease-in-out 9.9s forwards; color: #ff9900; }
+        .line-3 { animation: cinematicSequence 4.5s ease-in-out 9.9s forwards; color: #d1d5db; }
         .line-4 { animation: cinematicSequence 4.5s ease-in-out 14.6s forwards; color: #34d399; }
 
         .final-logo-box {
@@ -74,7 +103,7 @@
         @keyframes cinematicSequence {
             0% {
                 opacity: 0;
-                transform: scale(0.9) translateY(10px);
+                transform: scale(0.85) translateY(15px);
                 filter: blur(12px);
             }
             12% {
@@ -84,12 +113,12 @@
             }
             88% {
                 opacity: 1;
-                transform: scale(1.02) translateY(0);
+                transform: scale(1.03) translateY(0);
                 filter: blur(0px);
             }
             100% {
                 opacity: 0;
-                transform: scale(1.05) translateY(-10px);
+                transform: scale(1.06) translateY(-15px);
                 filter: blur(12px);
             }
         }
@@ -104,59 +133,79 @@
                 transform: translateY(0) scale(1);
             }
         }
+
+        @keyframes groxGridScroll {
+            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(0); opacity: 0; }
+            20% { opacity: 0.7; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-110vh); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
     <div class="scanlines"></div>
     <div class="cinematic-bg"></div>
+    <div class="grox-grid"></div>
+
+    <!-- FLOATING PARTICLES -->
+    <div class="redstone-particle p1"></div>
+    <div class="redstone-particle p2"></div>
+    <div class="redstone-particle p3"></div>
+    <div class="redstone-particle p4"></div>
 
     <div class="text-line line-1">
-        Welcome to RedStonePosting... <br>
-        Please try your absolute best not to break the site within five seconds.
+        Ayooo CHIIIIIIILLLL... <br>
+        REDSTONEPOSTING.Vercel.app is officially legit!
     </div>
 
     <div class="text-line line-2">
-        October 12: Everyone spammed the feed like a hyperactive live chat... <br>
-        <span style="font-size: 16px; color: #fca5a5;">(We literally wrote a whole manual telling you to stop, but reading is hard)</span>
+        October 12: You guys flooded the network thinking it was a live chat spam box... <br>
+        <span style="font-size: 16px; color: #fca5a5;">(The database limits almost vanished because reading instructions is too hard)</span>
     </div>
 
     <div class="text-line line-3">
-        To the genius testing the system by typing bad words over and over... <br>
-        Congratulations, your post is now a beautiful block of [CENSORED]. Total victory.
+        To the people drop testing bad words to see what happens... <br>
+        The client-side filter is fully automated. Enjoy reading your brand new [CENSORED] block.
     </div>
 
     <div class="text-line line-4">
-        We are officially live from Canada to Portugal and Sri Lanka... <br>
-        So try to look civilized before you hit that post button.
+        We are running across Canada, Portugal, and Sri Lanka... <br>
+        So calm down and look at the manual before pushing updates to the feed!
     </div>
 
     <div class="final-logo-box">
-        <h1 style="margin: 0; color: #ef4444; font-size: 32px; letter-spacing: 2px; font-family: sans-serif;">REDSTONEPOSTING</h1>
-        <p style="margin: 5px 0 20px 0; color: #ff9900; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">The Ultimate Survival Guide For Users</p>
+        <h1 style="margin: 0; color: #ef4444; font-size: 32px; letter-spacing: 2px; font-family: sans-serif;">REDSTONEPOSTING.VERCEL.APP</h1>
+        <p style="margin: 5px 0 20px 0; color: #ff9900; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">The Official Survival Guide For Users</p>
         
         <div style="background-color: #1a1a1a; padding: 15px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; font-size: 13px; color: #cccccc; margin-bottom: 25px; text-align: left; line-height: 1.6; font-family: sans-serif;">
-            <b style="color: #ff9900; display: block; margin-bottom: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Basic Features You Need To Know:</b>
-            • <b>Google Passwords:</b> Yes, it saves your login details automatically so the creator doesn't have to keep resetting your lost account every Tuesday.<br>
-            • <b>The App Icon:</b> You can pin this right to your desktop or phone home screen. It has a real working logo. Magic, right?<br>
-            • <b>Image Link Tagging:</b> Drop a normal link from Imgur or Discord, and the site dynamically fixes it into a clean picture box instead of leaving an ugly bare text link.<br>
+            <b style="color: #ff9900; display: block; margin-bottom: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Platform Features:</b>
+            • <b>Google Passwords:</b> Enabled automatically so the dashboard doesn't have to keep resetting your lost profiles every single day.<br>
+            • <b>The App Icon:</b> You can actually install this right onto your desktop or mobile taskbar. The logo loads perfectly.<br>
+            • <b>Image Link Tagging:</b> Still under development for the upcoming rollout! Do not paste broken link arrays yet.<br>
             <br>
-            <b style="color: #ff9900; display: block; margin-bottom: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">The Badges System Explained:</b>
-            • <span style="color: #ef4444; font-weight: bold;">👑 Owner and Developer:</span> Held strictly by Shahadah_Studios. Do not ask for it. You did not spend months coding this site on a Chromebook.<br>
-            • <span style="color: #3b82f6; font-weight: bold;">🔧 Developer:</span> The blue wrench badge for the actual dev team keeping the pages together and dealing with double posts.<br>
-            • <span style="color: #10b981; font-weight: bold;">🎖️ Scout:</span> Bring 5 active friends who actually post cool things to earn this. Spamming fake accounts gets you a 24-hour ban badge instead.<br>
-            • <span style="color: #a855f7; font-weight: bold;">✨ Approved Creator & Verified:</span> Legendary ranks for high-quality community members. If you spam or beg for it, your verification gets frozen until November 4th.
+            <b style="color: #ff9900; display: block; margin-bottom: 8px; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px;">Network Ranks & Badges:</b>
+            • <span style="color: #ef4444; font-weight: bold;">👑 Owner and Developer:</span> Held strictly by Shahadah_Studios. Do not ask for it, you did not write the source files.<br>
+            • <span style="color: #3b82f6; font-weight: bold;">🔧 Developer:</span> The blue wrench badge for the coding team keeping the database layers intact.<br>
+            • <span style="color: #10b981; font-weight: bold;">🎖️ Scout:</span> Permanent badge for active users who bring 5 real friends to the hub.<br>
+            • <span style="color: #a855f7; font-weight: bold;">✨ Approved Creator & Verified:</span> Legendary ranks you can unlock by posting clean builds and respecting the community rules without begging.
         </div>
 
         <a href="index.html" style="text-decoration: none;">
             <button style="width: 100%; background-color: #ef4444; color: white; font-family: sans-serif; font-size: 14px; font-weight: bold; padding: 12px; cursor: pointer; border-top: 2px solid #fca5a5; border-left: 2px solid #fca5a5; border-right: 2px solid #7f1d1d; border-bottom: 2px solid #7f1d1d; box-shadow: 0 4px 6px rgba(0,0,0,0.4); text-transform: uppercase; letter-spacing: 0.5px;">
-                Enter Feed (Behave Yourself)
+                Enter Feed Honestly
             </button>
         </a>
     </div>
 
 </body>
 </html>
+
 
 
 

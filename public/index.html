@@ -126,42 +126,7 @@
     </div>
 </div> 
 
-<script>
-    function renderImagePostLinks() {
-        const postBodies = document.querySelectorAll('.post-body');
 
-        postBodies.forEach(body => {
-            if (body.getAttribute('data-img-scanned') === 'true') return;
-
-            let textContent = body.innerHTML;
-            const strictImgRegex = /(https:\/\/[^\s<>]+\.(?:png|jpg|jpeg|gif|webp))/i;
-
-            if (strictImgRegex.test(textContent)) {
-                const matchResult = textContent.match(strictImgRegex);
-                const detectedImgUrl = matchResult[0];
-                
-                textContent = textContent.replace(detectedImgUrl, "").trim();
-                body.innerHTML = textContent;
-
-                const imageContainer = document.createElement('div');
-                imageContainer.setAttribute('style', 'margin-top: 10px; background-color: #1a1a1a; padding: 8px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; display: block;');
-
-                const imgElement = document.createElement('img');
-                imgElement.setAttribute('src', detectedImgUrl);
-                imgElement.setAttribute('style', 'max-width: 100%; height: auto; display: block; margin: 0 auto; max-height: 350px; object-fit: contain;');
-
-                imgElement.onerror = function() {
-                    this.parentNode.style.display = 'none';
-                };
-
-                imageContainer.appendChild(imgElement);
-                body.appendChild(imageContainer);
-            }
-
-            body.setAttribute('data-img-scanned', 'true');
-        });
-    }
-</script>
 
 
 

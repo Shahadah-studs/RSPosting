@@ -126,6 +126,76 @@
     </div>
 </div> 
 
+    <script>
+    function renderImagePostLinks() {
+        const postBodies = document.querySelectorAll('.post-body');
+
+        postBodies.forEach(body => {
+            if (body.getAttribute('data-img-scanned') === 'true') return;
+
+            let textContent = body.textContent || body.innerText;
+            const strictImgRegex = /(https:\/\/[^\s]+\.(?:png|jpg|jpeg|gif|webp))/i;
+
+            if (strictImgRegex.test(textContent)) {
+                const detectedImgUrl = textContent.match(strictImgRegex)[0];
+                textContent = textContent.replace(detectedImgUrl, "").trim();
+
+                let textNode = body.firstChild;
+                while (textNode) {
+                    if (textNode.nodeType === Node.TEXT_NODE) {
+                        textNode.nodeValue = textContent;
+                        break;
+                    }
+                    textNode = textNode.nextSibling;
+                }
+
+                const imageContainer = document.createElement('div');
+                imageContainer.setAttribute('style', 'margin-top: 10px; background-color: #1a1a1a; padding: 8px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; display: block;');
+
+                const imgElement = document.createElement('img');
+                imgElement.setAttribute('src', detectedImgUrl);
+                imgElement.setAttribute('style', 'max-width: 100%; height: auto; display: block; margin: 0 auto; max-height: 350px; object-fit: contain;');
+
+                imgElement.onerror = function() {
+                    this.parentNode.style.display = 'none';
+                };
+
+                imageContainer.appendChild(imgElement);
+                body.appendChild(imageContainer);
+            }
+
+            body.setAttribute('data-img-scanned', 'true');
+        });
+    }
+
+    async function sendPostToDatabase() {
+        const postInput = document.getElementById('postContent');
+        if (!postInput || postInput.value.trim() === "") return;
+
+        const rawContent = postInput.value;
+
+        const { data, error } = await supabase
+            .from('posts')
+            .insert([
+                { content: rawContent, username: currentUsername }
+            ]);
+
+        if (error) {
+            console.error(error);
+            return;
+        }
+
+        postInput.value = "";
+        
+        if (typeof fetchNextBatch === 'function') {
+            const feedContainer = document.getElementById('feedContainer');
+            if (feedContainer) feedContainer.innerHTML = "";
+            currentPointer = 0;
+            fetchNextBatch();
+        }
+    }
+</script>
+
     <!-- Automatic Team Badge and Swear Filter Engine -->
     <script>
         const badWords = ["fuck", "shit", "ass"];

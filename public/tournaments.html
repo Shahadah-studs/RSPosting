@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSP | Tournaments Hub</title>
+    <style>
+        body {
+            background-color: #222222;
+            color: #ffffff;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #toggle-rules:checked ~ #rules-drawer {
+            max-height: 300px !important;
+            padding: 15px !important;
+            margin-top: 15px !important;
+            opacity: 1 !important;
+        }
+
+        #toggle-rules:checked ~ .rules-trigger-btn {
+            background-color: #ef4444 !important;
+            border-top-color: #fca5a5 !important;
+            border-bottom-color: #7f1d1d !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="background-color: #111111; padding: 15px 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #ef4444;">
+        <span style="color: #ef4444; font-weight: bold; font-size: 22px; letter-spacing: 0.5px;">RedStonePosting Arena</span>
+        <a href="index.html" style="text-decoration: none;">
+            <button style="background-color: #3a3a3a; color: #ff9900; font-family: sans-serif; font-size: 13px; font-weight: bold; padding: 6px 14px; cursor: pointer; border-top: 2px solid #555555; border-left: 2px solid #555555; border-right: 2px solid #111111; border-bottom: 2px solid #111111;">
+                Back to Hub
+            </button>
+        </a>
+    </div>
+
+    <div style="background-color: #3a3a3a; max-width: 650px; margin: 0 auto; padding: 25px; border-top: 4px solid #555555; border-left: 4px solid #555555; border-right: 4px solid #111111; border-bottom: 4px solid #111111; box-shadow: 0 4px 10px rgba(0,0,0,0.4);">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #555555; padding-bottom: 12px; margin-bottom: 20px;">
+            <div>
+                <h3 style="color: #ff9900; margin: 0; text-transform: uppercase; font-size: 18px; letter-spacing: 0.5px;">Active Tournaments</h3>
+                <span style="color: #aaaaaa; font-size: 11px; font-weight: bold; text-transform: uppercase;">Network Matchmaking</span>
+            </div>
+            <span style="background-color: #ef4444; color: white; font-size: 10px; font-weight: bold; padding: 4px 8px; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.5px;">1 Event Live</span>
+        </div>
+
+        <div style="background-color: #1a1a1a; padding: 20px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; position: relative;">
+            
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <h4 style="margin: 0; color: #ffffff; font-size: 16px; font-weight: bold;">Castle Tournament</h4>
+                <span style="color: #34d399; font-size: 11px; font-family: monospace; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Active</span>
+            </div>
+
+            <div style="margin-bottom: 15px; font-family: monospace; font-size: 12px; color: #ff9900; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">
+                Timeline: Oct 17 - Oct 20
+            </div>
+
+            <p style="margin: 0 0 15px 0; font-size: 13px; line-height: 1.5; color: #cccccc;">
+                Build your grand sandbox castle inside Eaglercraft or Bloxd, drop your image attachment links in the feed container, and lock your submissions for community evaluation.
+            </p>
+
+            <input type="checkbox" id="toggle-rules" style="display: none;">
+            <label for="toggle-rules" class="rules-trigger-btn" style="display: inline-block; background-color: #3a3a3a; color: #ff9900; font-family: sans-serif; font-size: 11px; font-weight: bold; padding: 6px 12px; cursor: pointer; border-top: 2px solid #555555; border-left: 2px solid #555555; border-right: 2px solid #111111; border-bottom: 2px solid #111111; user-select: none;">
+                Show Tournament Rules
+            </label>
+
+            <div id="rules-drawer" style="background-color: #111111; border: 1px dashed #ef4444; max-height: 0px; overflow: hidden; opacity: 0; transition: all 0.3s ease-in-out; font-size: 12px; line-height: 1.6; color: #a7f3d0; box-sizing: border-box;">
+                • All build designs must be original work.<br>
+                • Duplicate submissions or fake image links result in disqualification.<br>
+                • Spamming threads to gather votes handles a 10-day badge suspension.
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

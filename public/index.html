@@ -126,102 +126,43 @@
     </div>
 </div> 
 
-    <script>
-    function processPostHTML(rawContent) {
-        let cleanText = rawContent;
-        if (typeof applySwearFilter === 'function') {
-            cleanText = applySwearFilter(rawContent);
-        }
+<script>
+    function renderImagePostLinks() {
+        const postBodies = document.querySelectorAll('.post-body');
 
-        const strictImgRegex = /(https:\/\/[^\s<>]+\.(?:png|jpg|jpeg|gif|webp))/i;
-        let imageHtml = "";
+        postBodies.forEach(body => {
+            if (body.getAttribute('data-img-scanned') === 'true') return;
 
-        if (strictImgRegex.test(cleanText)) {
-            const detectedImgUrl = cleanText.match(strictImgRegex)[0];
-            cleanText = cleanText.replace(detectedImgUrl, "").trim();
-            
-            imageHtml = `
-                <div style="margin-top: 10px; background-color: #1a1a1a; padding: 8px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; display: block;">
-                    <img src="${detectedImgUrl}" style="max-width: 100%; height: auto; display: block; margin: 0 auto; max-height: 350px; object-fit: contain;" onerror="this.parentNode.style.display='none';">
-                </div>
-            `;
-        }
+            let textContent = body.innerHTML;
+            const strictImgRegex = /(https:\/\/[^\s<>]+\.(?:png|jpg|jpeg|gif|webp))/i;
 
-        return `
-            <p style="margin: 0; line-height: 1.4; color: #f3f4f6;">${cleanText}</p>
-            ${imageHtml}
-        `;
-    }
+            if (strictImgRegex.test(textContent)) {
+                const matchResult = textContent.match(strictImgRegex);
+                const detectedImgUrl = matchResult[0];
+                
+                textContent = textContent.replace(detectedImgUrl, "").trim();
+                body.innerHTML = textContent;
 
-    async function fetchNextBatch() {
-        const loadMoreBtn = document.getElementById('rsp-load-more-btn');
-        const feedContainer = document.getElementById('feedContainer');
+                const imageContainer = document.createElement('div');
+                imageContainer.setAttribute('style', 'margin-top: 10px; background-color: #1a1a1a; padding: 8px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; display: block;');
 
-        if (!feedContainer || typeof supabase === 'undefined') return;
-        
-        const { data: posts, error } = await supabase
-            .from('posts')
-            .select('*')
-            .order('created_at', { ascending: false })
-            .range(currentPointer, currentPointer + batchSize - 1);
+                const imgElement = document.createElement('img');
+                imgElement.setAttribute('src', detectedImgUrl);
+                imgElement.setAttribute('style', 'max-width: 100%; height: auto; display: block; margin: 0 auto; max-height: 350px; object-fit: contain;');
 
-        if (error) {
-            console.error(error);
-            return;
-        }
+                imgElement.onerror = function() {
+                    this.parentNode.style.display = 'none';
+                };
 
-        posts.forEach(post => {
-            const postCard = document.createElement('div');
-            postCard.className = 'post-body';
-            postCard.setAttribute('style', 'background: #222; color: #fff; padding: 15px; margin-bottom: 12px; border-radius: 8px; border-left: 5px solid #ef4444; box-shadow: 0 2px 5px rgba(0,0,0,0.2); text-align: left; position: relative;');
-            
-            const insideContent = processPostHTML(post.content);
-            
-            postCard.innerHTML = `
-                <div style="font-weight: bold; color: #ff9900; margin-bottom: 6px;">
-                    @${post.username}
-                </div>
-                ${insideContent}
-            `;
-            feedContainer.appendChild(postCard);
-        });
-
-        currentPointer += batchSize;
-
-        if (loadMoreBtn) {
-            if (posts.length < batchSize) {
-                loadMoreBtn.style.display = 'none';
-            } else {
-                loadMoreBtn.style.display = 'inline-block';
+                imageContainer.appendChild(imgElement);
+                body.appendChild(imageContainer);
             }
-        }
-    }
 
-    async function sendPostToDatabase() {
-        const postInput = document.getElementById('postContent');
-        if (!postInput || postInput.value.trim() === "") return;
-
-        const rawContent = postInput.value;
-
-        const { data, error } = await supabase
-            .from('posts')
-            .insert([
-                { content: rawContent, username: currentUsername }
-            ]);
-
-        if (error) {
-            console.error(error);
-            return;
-        }
-
-        postInput.value = "";
-        
-        const feedContainer = document.getElementById('feedContainer');
-        if (feedContainer) feedContainer.innerHTML = "";
-        currentPointer = 0;
-        await fetchNextBatch();
+            body.setAttribute('data-img-scanned', 'true');
+        });
     }
 </script>
+
 
 
 

@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RSP | Maintenance Mode</title>
+    <title>RedStonePosting | See you at 1.1</title>
     <style>
         body {
-            background-color: #050505;
+            background-color: #151515;
             color: #ffffff;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: sans-serif;
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -22,7 +22,7 @@
         .scanlines {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(18, 18, 18, 0) 50%, rgba(0, 0, 0, 0.5) 50%);
+            background: linear-gradient(rgba(18, 18, 18, 0) 50%, rgba(0, 0, 0, 0.4) 50%);
             background-size: 100% 4px;
             z-index: 10;
             pointer-events: none;
@@ -31,112 +31,47 @@
         .cinematic-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, rgba(127,29,29,0.2) 0%, rgba(5,5,5,1) 80%);
+            background: radial-gradient(circle, rgba(239,68,68,0.1) 0%, rgba(21,21,21,1) 80%);
             z-index: 1;
         }
 
-        .grox-grid {
-            position: fixed;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background-image: 
-                linear-gradient(rgba(239, 68, 68, 0.12) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(239, 68, 68, 0.12) 2px, transparent 2px);
-            background-size: 50px 50px;
-            z-index: 2;
-            transform: perspective(500px) rotateX(60deg);
-            animation: groxGridScroll 12s linear infinite;
-        }
-
-        .chase-stage {
-            position: fixed;
-            bottom: 15%;
-            left: -300px;
-            width: 400px;
-            height: 150px;
-            z-index: 4;
-            display: flex;
-            align-items: flex-end;
-            gap: 80px;
-            perspective: 800px;
-            transform-style: preserve-3d;
-            animation: stagePassThrough 12s linear infinite;
-        }
-
-        .cube-3d {
-            width: 50px;
-            height: 95px;
-            position: relative;
-            transform-style: preserve-3d;
-        }
-
-        .face {
+        .redstone-particle {
             position: absolute;
-            width: 100%;
-            height: 100%;
-            box-sizing: border-box;
+            background-color: #ef4444;
+            box-shadow: 0 0 12px #ef4444, 0 0 20px #ef4444;
+            z-index: 3;
+            bottom: -20px;
+            opacity: 0;
         }
 
-        .grox-3d {
-            animation: runningLegs 0.3s ease-in-out infinite alternate;
-        }
+        .p1 { width: 6px; height: 6px; left: 15%; animation: particleFloat 7s linear infinite 1s; }
+        .p2 { width: 4px; height: 4px; left: 45%; animation: particleFloat 9s linear infinite 3s; }
+        .p3 { width: 8px; height: 8px; left: 75%; animation: particleFloat 6s linear infinite 0.5s; }
+        .p4 { width: 5px; height: 5px; left: 90%; animation: particleFloat 8s linear infinite 4s; }
 
-        .grox-3d .front {
-            background-color: #262626;
-            border: 3px solid #1a1a1a;
-            background-image: 
-                linear-gradient(to bottom, transparent 15px, #ef4444 15px, #ef4444 45px, transparent 45px),
-                linear-gradient(to right, transparent 22px, #ffffff 22px, #ffffff 28px, transparent 28px);
-            transform: rotateY(0deg) translateZ(15px);
-        }
-
-        .grox-3d .back { background-color: #1f1f1f; transform: rotateY(180deg) translateZ(15px); }
-        .grox-3d .left { background-color: #1f1f1f; border-left: 6px solid #eab308; transform: rotateY(-90deg) translateZ(25px); }
-        .grox-3d .right { background-color: #262626; border-right: 6px solid #eab308; transform: rotateY(90deg) translateZ(25px); }
-        .grox-3d .top { height: 50px; background-color: #333333; transform: rotateX(90deg) translateZ(25px); }
-
-        .null-3d {
-            animation: runningLegs 0.4s ease-in-out infinite alternate;
-        }
-
-        .null-3d .face { background-color: #000000; box-shadow: inset 0 0 15px rgba(239, 68, 68, 0.2); }
-        .null-3d .front {
-            background-image: linear-gradient(to right, transparent 10px, #ffffff 10px, #ffffff 18px, transparent 18px, transparent 32px, #ffffff 32px, #ffffff 40px, transparent 40px);
-            background-size: 100% 20px;
-            background-repeat: no-repeat;
-            background-position: 0 15px;
-            box-shadow: 0 0 25px #000000;
-            transform: rotateY(0deg) translateZ(15px);
-        }
-        .null-3d .back { transform: rotateY(180deg) translateZ(15px); }
-        .null-3d .left { transform: rotateY(-90deg) translateZ(25px); }
-        .null-3d .right { transform: rotateY(90deg) translateZ(25px); }
-        .null-3d .top { height: 50px; transform: rotateX(90deg) translateZ(25px); }
-
-        /* CINEMATIC TIMED TEXT ENGINE */
         .text-line {
             position: absolute;
             width: 90%;
             max-width: 750px;
             text-align: center;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
             opacity: 0;
-            transform: scale(0.9);
+            transform: scale(0.95);
             line-height: 1.6;
             z-index: 5;
-            text-shadow: 0 0 15px rgba(239,68,68,0.6);
+            text-shadow: 0 0 15px rgba(239,68,68,0.5);
         }
 
-        .line-1 { animation: cinematicSequence 4.5s ease-in-out 0.5s forwards; color: #ff9900; font-size: 32px; }
-        .line-2 { animation: cinematicSequence 4s ease-in-out 5.2s forwards; color: #ef4444; }
-        .line-3 { animation: cinematicSequence 4.5s ease-in-out 9.4s forwards; color: #d1d5db; }
+        .line-1 { animation: cinematicSequence 4.5s ease-in-out 0.5s forwards; color: #ff9900; }
+        .line-2 { animation: cinematicSequence 4.5s ease-in-out 5.2s forwards; color: #ef4444; }
+        .line-3 { animation: cinematicSequence 4.5s ease-in-out 9.9s forwards; color: #ffffff; }
 
-        /* SATISFYING STATIC LOGO FINAL BOX */
         .final-logo-box {
             opacity: 0;
             transform: translateY(40px) scale(0.95);
-            animation: finalReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 14.1s forwards;
+            animation: finalReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 14.6s forwards;
             background-color: #3a3a3a;
             padding: 30px;
             text-align: center;
@@ -144,17 +79,17 @@
             border-left: 4px solid #555555;
             border-right: 4px solid #111111;
             border-bottom: 4px solid #111111;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
             max-width: 550px;
             width: 90%;
             z-index: 6;
         }
 
         @keyframes cinematicSequence {
-            0% { opacity: 0; transform: scale(0.85) translateY(15px); filter: blur(12px); }
+            0% { opacity: 0; transform: scale(0.95) translateY(10px); filter: blur(10px); }
             12% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0px); }
-            88% { opacity: 1; transform: scale(1.03) translateY(0); filter: blur(0px); }
-            100% { opacity: 0; transform: scale(1.06) translateY(-15px); filter: blur(12px); }
+            88% { opacity: 1; transform: scale(1.02) translateY(0); filter: blur(0px); }
+            100% { opacity: 0; transform: scale(1.04) translateY(-10px); filter: blur(10px); }
         }
 
         @keyframes finalReveal {
@@ -162,19 +97,11 @@
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        @keyframes groxGridScroll {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
-        }
-
-        @keyframes stagePassThrough {
-            0% { left: -350px; transform: rotateY(15deg); }
-            100% { left: 115%; transform: rotateY(-15deg); }
-        }
-
-        @keyframes runningLegs {
-            0% { transform: translateY(0) rotateX(-5deg); }
-            100% { transform: translateY(-20px) rotateX(5deg); }
+        @keyframes particleFloat {
+            0% { transform: translateY(0); opacity: 0; }
+            20% { opacity: 0.8; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-110vh); opacity: 0; }
         }
     </style>
 </head>
@@ -182,29 +109,14 @@
 
     <div class="scanlines"></div>
     <div class="cinematic-bg"></div>
-    <div class="grox-grid"></div>
 
-    <!-- 3D RUNNING CHASE ENGINE -->
-    <div class="chase-stage">
-        <div class="cube-3d null-3d">
-            <div class="face front"></div>
-            <div class="face back"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-            <div class="face top"></div>
-        </div>
-        <div class="cube-3d grox-3d">
-            <div class="face front"></div>
-            <div class="face back"></div>
-            <div class="face left"></div>
-            <div class="face right"></div>
-            <div class="face top"></div>
-        </div>
-    </div>
+    <div class="redstone-particle p1"></div>
+    <div class="redstone-particle p2"></div>
+    <div class="redstone-particle p3"></div>
+    <div class="redstone-particle p4"></div>
 
-    <!-- CINEMATIC ANNOUNCEMENT SUBTITLES -->
     <div class="text-line line-1">
-        Ayooo CHIIIIIIILLLL...
+        Ayooo CHIIIIIIILLLL....
     </div>
 
     <div class="text-line line-2">
@@ -216,21 +128,21 @@
         Were cooking a good one for you guys!
     </div>
 
-    
     <div class="final-logo-box">
-        <h1 style="margin: 0; color: #ef4444; font-size: 32px; letter-spacing: 2px; font-family: sans-serif;">REDSTONEPOSTING</h1>
-        <p style="margin: 5px 0 20px 0; color: #ff9900; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Maintenance Log Status</p>
+        <h1 style="margin: 0; color: #ef4444; font-size: 32px; letter-spacing: 2px;">REDSTONEPOSTING</h1>
+        <p style="margin: 5px 0 20px 0; color: #ff9900; font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">Maintenance undergoing</p>
         
-        <div style="background-color: #1a1a1a; padding: 20px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; font-size: 13px; color: #cccccc; margin-bottom: 10px; text-align: center; line-height: 1.6; font-family: sans-serif;">
-            <b style="color: #ef4444; display: block; font-size: 16px; margin-bottom: 10px; text-transform: uppercase;">Upgrading Core Infrastructure</b>
-            We are preparing the site for optimal stability.<br>
-            Please check back shortly to access the site and drop a post!
+        <div style="background-color: #1a1a1a; padding: 20px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; font-size: 13px; color: #cccccc; margin-bottom: 15px; text-align: center; line-height: 1.6;">
+            <b style="color: #ef4444; display: block; font-size: 15px; margin-bottom: 8px; text-transform: uppercase;">Upgrading System wth cooked updates</b>
+            The forum dashboard is temporarily frozen while we perform updates and adjustments.<br>
+            Please stand by while the platform finish's updating, and when it comes back up drop a post!
         </div>
         
-        <div style="text-align: right; font-family: monospace; font-size: 11px; color: #ff9900; font-weight: bold; padding-top: 5px;">
-             Arriving back to service at Version 1.1. 
+        <div style="text-align: right; font-family: monospace; font-size: 12px; color: #ff9900; font-weight: bold;">
+            Arriving back to service at Version 1.1.
         </div>
     </div>
 
 </body>
 </html>
+

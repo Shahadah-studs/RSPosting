@@ -126,28 +126,21 @@
     </div>
 </div> 
 
-    <script>
+<script>
     function renderImagePostLinks() {
         const postBodies = document.querySelectorAll('.post-body');
 
         postBodies.forEach(body => {
             if (body.getAttribute('data-img-scanned') === 'true') return;
 
-            let textContent = body.textContent || body.innerText;
-            const strictImgRegex = /(https:\/\/[^\s]+\.(?:png|jpg|jpeg|gif|webp))/i;
+            let textContent = body.innerHTML;
+            const strictImgRegex = /(https:\/\/[^\s<>]+\.(?:png|jpg|jpeg|gif|webp))/i;
 
             if (strictImgRegex.test(textContent)) {
                 const detectedImgUrl = textContent.match(strictImgRegex)[0];
+                
                 textContent = textContent.replace(detectedImgUrl, "").trim();
-
-                let textNode = body.firstChild;
-                while (textNode) {
-                    if (textNode.nodeType === Node.TEXT_NODE) {
-                        textNode.nodeValue = textContent;
-                        break;
-                    }
-                    textNode = textNode.nextSibling;
-                }
+                body.innerHTML = textContent;
 
                 const imageContainer = document.createElement('div');
                 imageContainer.setAttribute('style', 'margin-top: 10px; background-color: #1a1a1a; padding: 8px; border-top: 2px solid #111111; border-left: 2px solid #111111; border-right: 2px solid #555555; border-bottom: 2px solid #555555; display: block;');
@@ -191,10 +184,11 @@
             const feedContainer = document.getElementById('feedContainer');
             if (feedContainer) feedContainer.innerHTML = "";
             currentPointer = 0;
-            fetchNextBatch();
+            await fetchNextBatch();
         }
     }
 </script>
+
 
     <!-- Automatic Team Badge and Swear Filter Engine -->
     <script>

@@ -43,19 +43,7 @@
                 
 
                 <button id="submitPostBtn" class="mc-btn">POST BLOCK</button>
-           <button onclick="refreshFeedEntirely()" style="width: 100%; max-width: 650px; margin: 15px auto; background-color: #3a3a3a; color: #ff9900; font-family: sans-serif; font-size: 12px; font-weight: bold; padding: 10px; cursor: pointer; border-top: 2px solid #555555; border-left: 2px solid #555555; border-right: 2px solid #111111; border-bottom: 2px solid #111111; box-shadow: 0 4px 6px rgba(0,0,0,0.2); text-transform: uppercase; letter-spacing: 0.5px; display: block;">
-    Reload Feed
-</button>
-
-<script>
-    async function refreshFeedEntirely() {
-        const feedContainer = document.getElementById('feedContainer');
-        if (!feedContainer) return;
-        feedContainer.innerHTML = "";
-        currentPointer = 0;
-        await fetchNextBatch();
-    }
-</script>
+          
 
             </section>
             <section id="feedContainer" class="feed-container">

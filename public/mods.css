@@ -1,0 +1,290 @@
+body {
+    background-color: #222222;
+    color: #ffffff;
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.rsp-header-nav {
+    background-color: #111111;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #ef4444;
+    position: relative;
+    z-index: 5;
+}
+
+.rsp-header-title {
+    color: #ef4444;
+    font-weight: bold;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+}
+
+.rsp-nav-back-btn {
+    background-color: #3a3a3a;
+    color: #ff9900;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 6px 14px;
+    cursor: pointer;
+    border-top: 2px solid #555555;
+    border-left: 2px solid #555555;
+    border-right: 2px solid #111111;
+    border-bottom: 2px solid #111111;
+}
+
+.rsp-form-card {
+    background-color: #3a3a3a;
+    max-width: 650px;
+    margin: 30px auto 20px auto;
+    padding: 25px;
+    border-top: 4px solid #555555;
+    border-left: 4px solid #555555;
+    border-right: 4px solid #111111;
+    border-bottom: 4px solid #111111;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.rsp-card-header {
+    color: #ff9900;
+    margin: 0 0 15px 0;
+    text-transform: uppercase;
+    font-size: 16px;
+    border-bottom: 2px dashed #555555;
+    padding-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.rsp-field-label {
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.interactive-input {
+    width: 100%;
+    background-color: #1a1a1a;
+    color: white;
+    border: 2px solid #111111;
+    padding: 10px;
+    font-family: monospace;
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+
+.interactive-input:focus {
+    border: 2px solid #ef4444 !important;
+    box-shadow: 0 0 12px #ef4444 !important;
+    background-color: #222222 !important;
+    outline: none;
+}
+
+.code-area {
+    height: 120px;
+    color: #34d399;
+    font-size: 13px;
+    resize: none;
+}
+
+.rsp-submit-action-btn {
+    width: 100%;
+    background-color: #ef4444;
+    color: white;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px;
+    cursor: pointer;
+    border-top: 2px solid #fca5a5;
+    border-left: 2px solid #fca5a5;
+    border-right: 2px solid #7f1d1d;
+    border-bottom: 2px solid #7f1d1d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rsp-scroller-layout {
+    max-width: 650px;
+    margin: 0 auto 50px auto;
+}
+
+.rsp-scroller-header {
+    color: #ff9900;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.rsp-scroller-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 450px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.rsp-empty-indicator {
+    background-color: #1a1a1a;
+    padding: 15px;
+    border: 2px dashed #444;
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+}
+
+.mod-scroller-item {
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-top: 2px solid #111111;
+    border-left: 2px solid #111111;
+    border-right: 2px solid #555555;
+    border-bottom: 2px solid #555555;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s;
+    position: relative;
+}
+
+.mod-scroller-item:hover {
+    border-color: #ef4444 !important;
+    background-color: #222222 !important;
+    transform: translateY(-2px);
+}
+
+.rsp-item-title-text {
+    font-weight: bold;
+    color: #ff9900;
+    font-size: 14px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    padding-right: 80px;
+}
+
+.rsp-item-author-text {
+    font-family: monospace;
+    font-size: 11px;
+    color: #888888;
+}
+
+.rsp-item-action-trigger {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10px;
+    font-weight: bold;
+    color: #ef4444;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rsp-popup-overlay-mask {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.85);
+    z-index: 99999;
+    justify-content: center;
+    align-items: center;
+}
+
+.rsp-popup-window-box {
+    background-color: #3a3a3a;
+    padding: 25px;
+    max-width: 550px;
+    width: 92%;
+    border-top: 4px solid #555555;
+    border-left: 4px solid #555555;
+    border-right: 4px solid #111111;
+    border-bottom: 4px solid #111111;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.rsp-popup-main-title {
+    margin: 0 0 4px 0;
+    color: #ff9900;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.rsp-popup-metadata-line {
+    font-family: monospace;
+    font-size: 11px;
+    color: #aaaaaa;
+    margin-bottom: 15px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rsp-popup-code-container {
+    position: relative;
+    background-color: #1a1a1a;
+    border: 2px solid #111111;
+    padding: 12px;
+    margin-bottom: 20px;
+}
+
+.rsp-popup-textarea-display {
+    width: 100%;
+    height: 200px;
+    background-color: transparent;
+    color: #34d399;
+    border: none;
+    font-family: monospace;
+    font-size: 13px;
+    resize: none;
+    outline: none;
+    box-sizing: border-box;
+    display: block;
+}
+
+.rsp-popup-copy-action-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #111111;
+    color: #ff9900;
+    border: 1px solid #555555;
+    font-family: monospace;
+    font-size: 11px;
+    padding: 4px 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.rsp-popup-dismiss-btn {
+    width: 100%;
+    background-color: #ef4444;
+    color: white;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    cursor: pointer;
+    border-top: 2px solid #fca5a5;
+    border-left: 2px solid #fca5a5;
+    border-right: 2px solid #7f1d1d;
+    border-bottom: 2px solid #7f1d1d;
+    text-transform: uppercase;
+}

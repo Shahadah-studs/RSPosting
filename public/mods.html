@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RedStonePosting | Mods</title>
+    <link rel="stylesheet" href="mods.css">
+</head>
+<body>
+
+    <div class="rsp-header-nav">
+        <span class="rsp-header-title">RedStonePosting Mods</span>
+        <a href="index.html" style="text-decoration: none;">
+            <button class="rsp-nav-back-btn">Back to Hub</button>
+        </a>
+    </div>
+
+    <div class="rsp-form-card">
+        <h3 class="rsp-card-header">Submit Mod</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+            <div>
+                <label class="rsp-field-label">Anonymous Handle</label>
+                
+            </div>
+            <div>
+                <label class="rsp-field-label">Mod Title</label>
+                <input type="text" id="mod-title" placeholder="Enter script title..." class="interactive-input">
+            </div>
+            <div>
+                <label class="rsp-field-label">Mod Data String (Max 5,000 Characters)</label>
+                <textarea id="mod-code" maxlength="5000" placeholder="Paste your clean text block file lines here..." class="interactive-input code-area"></textarea>
+            </div>
+            <button onclick="publishModToCloud()" class="rsp-submit-action-btn">Publish Script Block</button>
+        </div>
+    </div>
+
+    <div class="rsp-scroller-layout">
+        <h4 class="rsp-scroller-header">Live Mods Database Scroller</h4>
+        <div id="modsScrollerBox" class="rsp-scroller-container"></div>
+    </div>
+
+    <div id="modPopupOverlay" class="rsp-popup-overlay-mask">
+        <div class="rsp-popup-window-box">
+            <h2 id="popupModTitle" class="rsp-popup-main-title">TITLE PLACEHOLDER</h2>
+            <div id="popupModMeta" class="rsp-popup-metadata-line">BY AUTHOR</div>
+            
+            <div class="rsp-popup-code-container">
+                <textarea id="popupModCodeDisplay" readonly class="rsp-popup-textarea-display"></textarea>
+                <button onclick="copyPopupCodeToClipboard()" class="rsp-popup-copy-action-btn">COPY CODE</button>
+            </div>
+
+            <button onclick="closeModPreviewPopup()" class="rsp-popup-dismiss-btn">Dismiss Preview Screen</button>
+        </div>
+    </div>
+
+    <script src="mods.js"></script>
+</body>
+</html>

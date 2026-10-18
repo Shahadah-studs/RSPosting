@@ -317,27 +317,8 @@
             });
         });
         
-        layoutObserver.observe(        const layoutObserver = new MutationObserver(() => {
-            
-            //  CRITICAL IMPERSONATOR LIQUIDATION INTERCEPTOR
-            document.querySelectorAll('.username-link, #profileUsername').forEach(userNode => {
-                const nameCheck = userNode.innerText.trim().toLowerCase();
-                
-                // Targets fakes handle with the typed emojis instantly
-                if (nameCheck.includes('superb1oxd_303🔧 ') || nameCheck.includes('superb1oxd_303🔧 😎')) {
-                    userNode.innerText = "[BANNED COPYCAT]";
-                    userNode.style.color = "#ff5555";
-                    userNode.style.pointerEvents = "none"; // Locks clicks
-                    
-                    // Locates their post block card on screen and flattens the contents
-                    const postCard = userNode.closest('.mc-post, .mc-panel');
-                    if (postCard) {
-                        const bodyText = postCard.querySelector('.post-body');
-                        if (bodyText) bodyText.innerText = "❌ THIS CHUNK WAS TERMINATED BY THE SYSTEM OPERATOR.";
-                        postCard.style.opacity = "0.4"; // Fades out the card layout
-                    }
-                }
-            });
+        layoutObserver.observe(        
+                        
 document.body, { childList: true, subtree: true });
     </script>
 

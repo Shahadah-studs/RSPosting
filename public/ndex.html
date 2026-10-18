@@ -212,30 +212,7 @@
             // 2. Team Badges (Crown, Wrench, Medal)
             document.querySelectorAll('.username-link').forEach(link => {
                 const nameText = link.innerText.trim().toLowerCase();
-                // 2. Automated Emoji Exterminator & Team Badges
-            document.querySelectorAll('.username-link').forEach(link => {
-                const rawName = link.innerText.trim();
-                const nameText = rawName.toLowerCase();
                 
-                // 🛑 AUTOMATED EMOJI ACCOUNT EXTERMINATOR
-                // Regex checks if the user typed ANY custom emoji inside their database string
-                const emojiRegex = /\p{Extended_Pictographic}/u;
-                
-                if (emojiRegex.test(rawName)) {
-                    // Strips their toxic text block instantly on the layout render
-                    link.innerText = "[BANNED]";
-                    link.style.color = "#ff5555";
-                    link.style.pointerEvents = "none"; // Blocks all clicks to their fake profile
-
-                    // Locates their post board wrapper and flattens its message content
-                    const postCard = link.closest('.mc-post, .mc-panel');
-                    if (postCard) {
-                        const bodyText = postCard.querySelector('.post-body');
-                        if (bodyText) bodyText.innerText = "❌ THIS CHUNK WAS TERMINATED BY THE SYSTEM OPERATOR.";
-                        postCard.style.opacity = "0.4"; // Fades the card structure to show it is dead
-                    }
-                    return; // Stops execution immediately so they get NO real hover badges!
-                }
                 // Shahadah_Studios Crown
                 if ((nameText === 'shahadah_studios' || nameText === 'shahadah_studios_elite') && !link.querySelector('.owner-crown')) {
                     const crownSpan = document.createElement('span');

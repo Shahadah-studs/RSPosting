@@ -1,18 +1,18 @@
 :root {
-    --mc-bg: #2c2c2c;
-    --mc-panel-bg: #4c4c4c;
-    --mc-border-light: #8f8f8f;
-    --mc-border-dark: #1e1e1e;
-    --mc-text: #ffffff;
-    --mc-text-shadow: #242424;
-    --mc-btn-bg: #8b8b8b;
-    --mc-btn-hover: #a0a0a0;
+    --wt-bg: #141718;
+    --wt-panel-bg: #1d2122;
+    --wt-border-light: #444c4e;
+    --wt-border-dark: #0b0d0e;
+    --wt-text: #e2e8f0;
+    --wt-text-shadow: #050606;
+    --wt-btn-bg: #2d3537;
+    --wt-btn-hover: #3d4648;
 }
 
 body {
-    background-color: var(--mc-bg);
-    color: var(--mc-text);
-    font-family: 'Minecraft', 'Courier New', monospace;
+    background-color: var(--wt-bg);
+    color: var(--wt-text);
+    font-family: 'Courier New', Courier, monospace;
     margin: 0;
     padding: 0;
     image-rendering: pixelated;
@@ -21,8 +21,8 @@ body {
 .hide { display: none !important; }
 
 .mc-header {
-    background-color: #111;
-    border-bottom: 4px solid var(--mc-border-dark);
+    background-color: #0b0d0e;
+    border-bottom: 4px solid var(--wt-border-dark);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,17 +31,21 @@ body {
 
 .mc-title {
     font-size: 24px;
-    text-shadow: 2px 2px var(--mc-text-shadow);
-    color: #ff5555;
+    text-shadow: 2px 2px var(--wt-text-shadow);
+    color: #eab308;
     margin: 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .user-status {
-    color: #55ff55;
+    color: #34d399;
     font-size: 14px;
     display: flex;
     align-items: center;
     gap: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .mc-container {
@@ -51,20 +55,20 @@ body {
 }
 
 .mc-panel {
-    background-color: var(--mc-panel-bg);
-    border: 4px solid var(--mc-border-dark);
-    box-shadow: inset 4px 4px var(--mc-border-light), inset -4px -4px #3a3a3a;
+    background-color: var(--wt-panel-bg);
+    border: 4px solid var(--wt-border-dark);
+    box-shadow: inset 4px 4px var(--wt-border-light), inset -4px -4px #121516;
     padding: 20px;
     margin-bottom: 25px;
 }
 
 .mc-form-group { margin-bottom: 15px; }
-.mc-form-group label { display: block; margin-bottom: 5px; }
+.mc-form-group label { display: block; margin-bottom: 5px; font-weight: bold; text-transform: uppercase; font-size: 12px; color: #a0aec0; }
 
 .mc-input {
     width: 100%;
-    background-color: #1e1e1e;
-    border: 4px solid var(--mc-border-dark);
+    background-color: #0b0d0e;
+    border: 4px solid var(--wt-border-dark);
     color: #fff;
     font-family: inherit;
     padding: 8px;
@@ -74,9 +78,9 @@ body {
 textarea {
     width: 100%;
     height: 80px;
-    background-color: #1e1e1e;
-    border: 4px solid var(--mc-border-dark);
-    color: #fff;
+    background-color: #0b0d0e;
+    border: 4px solid var(--wt-border-dark);
+    color: #34d399;
     font-family: inherit;
     padding: 10px;
     box-sizing: border-box;
@@ -85,27 +89,30 @@ textarea {
 }
 
 .mc-btn {
-    background-color: var(--mc-btn-bg);
-    border: 4px solid var(--mc-border-dark);
-    box-shadow: inset -4px -4px #555555, inset 4px 4px #dbdbdb;
-    color: #e0e0e0;
+    background-color: var(--wt-btn-bg);
+    border: 4px solid var(--wt-border-dark);
+    box-shadow: inset -4px -4px #171d1e, inset 4px 4px #535c5e;
+    color: #e2e8f0;
     font-family: inherit;
     font-size: 14px;
     padding: 8px 16px;
     cursor: pointer;
     text-shadow: 2px 2px #000;
+    text-transform: uppercase;
+    font-weight: bold;
 }
-.mc-btn:hover { background-color: var(--mc-btn-hover); color: #fff; }
-.mc-btn:active { box-shadow: inset 4px 4px #555555, inset -4px -4px #dbdbdb; }
+.mc-btn:hover { background-color: var(--wt-btn-hover); color: #eab308; }
+.mc-btn:active { box-shadow: inset 4px 4px #171d1e, inset -4px -4px #535c5e; }
 
 .mc-btn-text {
     background: none;
     border: none;
-    color: #aaa;
+    color: #718096;
     font-family: inherit;
     cursor: pointer;
     text-decoration: underline;
     margin-left: 10px;
+    font-size: 12px;
 }
 .mc-btn-text:hover { color: #fff; }
 
@@ -119,8 +126,9 @@ textarea {
     justify-content: center;
     font-weight: bold;
     color: #fff;
-    border: 2px solid #000;
+    border: 2px solid #0b0d0e;
     text-shadow: 1px 1px #000;
+    box-shadow: inset 2px 2px #444c4e;
 }
 
 .avatar-big {
@@ -132,12 +140,14 @@ textarea {
     font-weight: bold;
     font-size: 24px;
     color: #fff;
-    border: 4px solid #000;
+    border: 4px solid #0b0d0e;
     text-shadow: 2px 2px #000;
+    box-shadow: inset 4px 4px #444c4e;
 }
 
-.username-link { cursor: pointer; color: #55ffff; text-decoration: none; }
+.username-link { cursor: pointer; color: #eab308; text-decoration: none; font-weight: bold; }
 .username-link:hover { text-decoration: underline; }
-.post-meta { color: #aaa; font-size: 12px; }
+.post-meta { color: #718096; font-size: 12px; font-family: monospace; }
 .post-actions { display: flex; gap: 10px; margin-top: 15px; }
 .profile-header-card { display: flex; align-items: center; gap: 20px; }
+

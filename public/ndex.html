@@ -151,19 +151,15 @@
     </div>
 </div> 
 
-
-<style>
+    <style>
     @keyframes redstoneBurst {
         0% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; }
     }
 </style>
+
 <script>
     document.body.addEventListener('click', function(e) {
-        const feedContainer = document.getElementById('feedContainer');
-        if (!feedContainer) return;
-        if (!feedContainer.contains(e.target) && !e.target.closest('.post-body')) return;
-
         const burstCount = 8;
         for (let i = 0; i < burstCount; i++) {
             const particle = document.createElement('div');
@@ -183,6 +179,7 @@
         }
     });
 </script>
+
 
 
 
